@@ -14,7 +14,7 @@
                 <img src="{{ asset('dist/img/user1.jpg') }}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
+                <a href="#" class="d-block">{{ auth()->user()->name }}</a>
             </div>
         </div>
 
@@ -36,19 +36,47 @@
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="#" class="nav-link active">
+                    <a href="{{ route('home') }}" class="nav-link active">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
-                            Dashboard
+                            {{ __('Dashboard') }}
                         </p>
                     </a>
                 </li>
                 @if (auth()->user()->is_admin)
+                <span class="text-white p-2">{{ __('Manage Checklist') }}</span>
+                    @foreach (\App\Models\ChecklistGroup::with('checklists')->get() as $group)
+                        <li class="nav-item">
+                            <a href="{{ route('admin.checklist_groups.edit', $group->id) }}" class="nav-link">
+                                <i class="nav-icon fas fa-chart-pie"></i>
+                                <p>
+                                    {{ $group->name }}
+                                    <i class="nav-icon right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                        </li>
+                        @foreach ($group->checklists as $checklist)
+                            <li class="nav-item">
+                                <a href="{{ route('admin.checklist_groups.checklists.edit', [$group, $checklist]) }}" class="nav-link">
+                                    ____<i class="nav-icon far fa-circle nav-icon"></i>
+                                    <p>{{ $checklist->name }}</p>
+                                </a>
+                            </li>
+                        @endforeach
+                        <li class="nav-item">
+                            <a href="{{ route('admin.checklist_groups.checklists.create', $group->id) }}" class="nav-link">
+                                ____<i class="nav-icon far fa-plus-square"></i>
+                                <p>
+                                    {{ __('New checklist') }}
+                                </p>
+                            </a>
+                        </li>
+                    @endforeach
                     <li class="nav-item">
-                        <a href="{{ route('admin.pages.index') }}" class="nav-link">
-                            <i class="nav-icon far fa-file"></i>
+                        <a href="{{ route('admin.checklist_groups.create') }}" class="nav-link">
+                            <i class="nav-icon fas fa-share-square"></i>
                             <p>
-                                Pages
+                                {{ __('New checklist group') }}
                             </p>
                         </a>
                     </li>
