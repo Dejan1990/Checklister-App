@@ -54,20 +54,19 @@
                 <!-- /.card-body -->
                 <div class="card-footer">
                   <button type="submit" class="btn btn-info text-white">{{ __('Update') }}</button>
-
-                  <form action="{{ route('admin.checklist_groups.destroy', $checklistGroup->id) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger float-right" onclick="return confirm('{{ __('Are you sure?') }}')">
-                        {{ __('Delete') }}
-                    </button>
-                    </form>
                 </div>
                 <!-- /.card-footer -->
               </form>
               
             </div>
             <!-- /.card -->
+            <form action="{{ route('admin.checklist_groups.destroy', $checklistGroup->id) }}" method="POST">
+              @csrf
+              @method('DELETE')
+              <button type="submit" class="btn btn-danger" onclick="return confirm('{{ __('Are you sure?') }}')">
+                  {{ __('Delete Checklist Group') }}
+              </button>
+              </form>
             </div>
           </div>
         </div>

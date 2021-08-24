@@ -6,12 +6,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">{{ __('Update checklist') }}</h1>
+                    <h1 class="m-0">{{ __('Edit checklist') }}</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ __('Home') }}</a></li>
-                        <li class="breadcrumb-item active">{{ __('Update checklist') }}</li>
+                        <li class="breadcrumb-item active">{{ __('Edit checklist') }}</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -60,21 +60,22 @@
                             <div class="card-footer">
                                 <button type="submit"
                                     class="btn btn-info text-white">{{ __('Update Checklister') }}</button>
-                                <form
-                                    action="{{ route('admin.checklist_groups.checklists.destroy', [$checklistGroup, $checklist]) }}"
-                                    method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger float-right"
-                                        onclick="return confirm('{{ __('Are you sure?') }}')">
-                                        {{ __('Delete') }}
-                                    </button>
-                                </form>
                             </div>
                             <!-- /.card-footer -->
                         </form>
                     </div>
                     <!-- /.card -->
+
+                    <form
+                        action="{{ route('admin.checklist_groups.checklists.destroy', [$checklistGroup, $checklist]) }}"
+                        method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger"
+                            onclick="return confirm('{{ __('Are you sure?') }}')">
+                            {{ __('Delete Checklister') }}
+                        </button>
+                    </form>
 
                     <hr>
 
@@ -104,7 +105,7 @@
                                         @endforeach
                                     @else
                                         <p class="text-danger">
-                                          {{ __('There is no tasks yet') }}
+                                            {{ __('There is no tasks yet') }}
                                         </p>
                                     @endif
                                 </tbody>
@@ -115,7 +116,7 @@
                     <div class="card">
                         @if ($errors->storetask->any())
                             <div class="alert alert-danger">
-                                <ul>
+                                <ul class="mb-0">
                                     @foreach ($errors->storetask->all() as $error)
                                         <li>{{ $error }}</li>
                                     @endforeach
