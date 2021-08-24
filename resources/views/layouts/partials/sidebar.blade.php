@@ -43,52 +43,56 @@
                         </p>
                     </a>
                 </li>
-                <span class="text-white p-2">{{ __('Admin') }}</span>
-                <li class="nav-item">
-                    <a href="{{ route('admin.pages.index') }}" class="nav-link">
-                        __<i class="nav-icon far fa-plus-square"></i>
-                        <p>
-                            {{ __('Pages') }}
-                        </p>
-                    </a>
-                </li>
-                @if (auth()->user()->is_admin)
                 <span class="text-white p-2">{{ __('Manage Checklist') }}</span>
-                    @foreach (\App\Models\ChecklistGroup::with('checklists')->get() as $group)
+                @foreach (\App\Models\ChecklistGroup::with('checklists')->get() as $group)
+                    <li class="nav-item">
+                        <a href="{{ route('admin.checklist_groups.edit', $group->id) }}" class="nav-link">
+                            <i class="nav-icon fas fa-chart-pie"></i>
+                            <p>
+                                {{ $group->name }}
+                                <i class="nav-icon right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                    </li>
+                    @foreach ($group->checklists as $checklist)
                         <li class="nav-item">
-                            <a href="{{ route('admin.checklist_groups.edit', $group->id) }}" class="nav-link">
-                                <i class="nav-icon fas fa-chart-pie"></i>
-                                <p>
-                                    {{ $group->name }}
-                                    <i class="nav-icon right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                        </li>
-                        @foreach ($group->checklists as $checklist)
-                            <li class="nav-item">
-                                <a href="{{ route('admin.checklist_groups.checklists.edit', [$group, $checklist]) }}" class="nav-link">
-                                    __<i class="nav-icon far fa-circle nav-icon"></i>
-                                    <p>{{ $checklist->name }}</p>
-                                </a>
-                            </li>
-                        @endforeach
-                        <li class="nav-item">
-                            <a href="{{ route('admin.checklist_groups.checklists.create', $group->id) }}" class="nav-link">
-                                ____<i class="nav-icon far fa-plus-square"></i>
-                                <p>
-                                    {{ __('New checklist') }}
-                                </p>
+                            <a href="{{ route('admin.checklist_groups.checklists.edit', [$group, $checklist]) }}"
+                                class="nav-link">
+                                __<i class="nav-icon far fa-circle nav-icon"></i>
+                                <p>{{ $checklist->name }}</p>
                             </a>
                         </li>
                     @endforeach
                     <li class="nav-item">
-                        <a href="{{ route('admin.checklist_groups.create') }}" class="nav-link">
-                            <i class="nav-icon fas fa-share-square"></i>
+                        <a href="{{ route('admin.checklist_groups.checklists.create', $group->id) }}"
+                            class="nav-link">
+                            ____<i class="nav-icon far fa-plus-square"></i>
                             <p>
-                                {{ __('New checklist group') }}
+                                {{ __('New checklist') }}
                             </p>
                         </a>
                     </li>
+                @endforeach
+                <li class="nav-item">
+                    <a href="{{ route('admin.checklist_groups.create') }}" class="nav-link">
+                        <i class="nav-icon fas fa-share-square"></i>
+                        <p>
+                            {{ __('New checklist group') }}
+                        </p>
+                    </a>
+                </li>
+                @if (auth()->user()->is_admin)
+                    <span class="text-white p-2">{{ __('Pages') }}</span>
+                    @foreach (\App\Models\Page::all() as $page)
+                        <li class="nav-item">
+                            <a href="{{ route('admin.pages.edit', $page) }}" class="nav-link">
+                                __<i class="nav-icon far fa-plus-square"></i>
+                                <p>
+                                    {{ $page->title }}
+                                </p>
+                            </a>
+                        </li>
+                    @endforeach
                 @endif
             </ul>
         </nav>
