@@ -10,6 +10,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <title>{{ config('app.name', 'Laravel') }}</title>
 
   <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+  @livewireStyles
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">

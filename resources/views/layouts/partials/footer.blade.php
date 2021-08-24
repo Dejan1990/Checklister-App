@@ -22,3 +22,5 @@
 
 <!-- REQUIRED SCRIPTS -->
 <script src="{{ asset('js/app.js') }}"></script>
+@livewireScripts
+<script src="https://cdn.jsdelivr.net/gh/livewire/sortable@v0.x.x/dist/livewire-sortable.js"></script>
