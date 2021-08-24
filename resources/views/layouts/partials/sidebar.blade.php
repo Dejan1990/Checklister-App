@@ -43,6 +43,15 @@
                         </p>
                     </a>
                 </li>
+                <span class="text-white p-2">{{ __('Admin') }}</span>
+                <li class="nav-item">
+                    <a href="{{ route('admin.pages.index') }}" class="nav-link">
+                        __<i class="nav-icon far fa-plus-square"></i>
+                        <p>
+                            {{ __('Pages') }}
+                        </p>
+                    </a>
+                </li>
                 @if (auth()->user()->is_admin)
                 <span class="text-white p-2">{{ __('Manage Checklist') }}</span>
                     @foreach (\App\Models\ChecklistGroup::with('checklists')->get() as $group)
@@ -58,7 +67,7 @@
                         @foreach ($group->checklists as $checklist)
                             <li class="nav-item">
                                 <a href="{{ route('admin.checklist_groups.checklists.edit', [$group, $checklist]) }}" class="nav-link">
-                                    ____<i class="nav-icon far fa-circle nav-icon"></i>
+                                    __<i class="nav-icon far fa-circle nav-icon"></i>
                                     <p>{{ $checklist->name }}</p>
                                 </a>
                             </li>
