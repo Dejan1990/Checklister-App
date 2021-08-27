@@ -10,7 +10,7 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ __('Home') }}</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('welcome') }}">{{ __('Home') }}</a></li>
                         <li class="breadcrumb-item"><a href="{{ route('admin.checklist_groups.checklists.edit', [$checklist->checklist_group_id, $checklist]) }}">{{ __('Edit Checklist') }}</a></li>
                         <li class="breadcrumb-item active">{{ __('Edit task') }}</li>
                     </ol>

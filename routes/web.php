@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\ChecklistController;
 use App\Http\Controllers\Admin\ChecklistGroupController;
 use App\Http\Controllers\Admin\TaskController;
+use App\Http\Controllers\Admin\UserController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,5 +22,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('checklist_groups', ChecklistGroupController::class);
         Route::resource('checklist_groups.checklists', ChecklistController::class);
         Route::resource('checklists.tasks', TaskController::class);
+        Route::get('users', [UserController::class, 'index'])->name('users.index');
     });
 });

@@ -93,6 +93,16 @@
                             </a>
                         </li>
                     @endforeach
+
+                    <span class="text-white p-2">{{ __('Manage Data') }}</span>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.users.index') }}" class="nav-link">
+                            __<i class="fas fa-users"></i>
+                            <p>
+                                {{ __('Users') }}
+                            </p>
+                        </a>
+                    </li>
                 @endif
             </ul>
         </nav>
