@@ -83,7 +83,7 @@
                         </a>
                     </li>
                 @else
-                    @foreach (\App\Models\ChecklistGroup::with('checklists')->get() as $group)
+                    @foreach (\App\Models\ChecklistGroup::with(['checklists' => function($query) { $query->whereNull('user_id'); }])->get() as $group)
                         <span class="text-white p-2">{{ $group->name }}</span>
                         @foreach ($group->checklists as $checklist)
                             <li class="nav-item">
